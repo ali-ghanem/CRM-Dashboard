@@ -1,0 +1,125 @@
+﻿@model CRM_Dashboard.Models.ViewModels.VisitViewModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<script>
+    let links = document.getElementById("linksList").children;
+    for (let i = 1; i < links.length; i++) {
+        links[i].classList.remove("active");
+        links[i].children[0].style.color = "#007bff";
+    }
+    let element = document.getElementById("linkVisits");
+    console.log(element);
+    console.log(element.children);
+
+    element.classList.add("active");
+    element.children[0].style.color = "#ffffff";
+</script>
+
+<h1>Edit Visit</h1>
+<br />
+
+<form method="post">
+    <input hidden asp-for="Visit.Id" />
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="form-group row">
+        <label asp-for="Visit.EmployeeId" class="col-2"></label>
+        <select asp-for="Visit.EmployeeId" asp-items="@(new SelectList(Model.EmployeesNames, "Id", "Name"))" class="col-5 form-control"></select>
+        <span asp-validation-for="Visit.EmployeeId" class="text-danger col-5"></span>
+    </div>
+    <div class="form-group row">
+        <label asp-for="Visit.CustomerName" class="col-2"></label>
+        <input asp-for="Visit.CustomerName" class="col-5 form-control" />
+        <span asp-validation-for="Visit.CustomerName" class="text-danger col-5"></span>
+    </div>
+    <div class="form-group row">
+        <label asp-for="Visit.Mobile" class="col-2"></label>
+        <input asp-for="Visit.Mobile" class="col-5 form-control" />
+        <span asp-validation-for="Visit.Mobile" class="text-danger col-5"></span>
+    </div>
+    <div class="form-group row">
+        <label asp-for="Visit.Email" class="col-2"></label>
+        <input asp-for="Visit.Email" type="email" class="col-5 form-control" />
+        <span asp-validation-for="Visit.Email" class="text-danger col-5"></span>
+    </div>
+    <div class="form-group row">
+        <label asp-for="Visit.JobTitleId" class="col-2"></label>
+        <select asp-for="Visit.JobTitleId" asp-items="@(new SelectList(Model.JobTitles, "Id", "Name"))" class="col-5 form-control"></select>
+        <span asp-validation-for="Visit.JobTitleId" class="text-danger col-5"></span>
+    </div>
+    <div class="form-group row">
+        <label asp-for="Visit.Gender" class="col-2"></label>
+        <select asp-for="Visit.Gender" asp-items="@(Html.GetEnumSelectList(Model.Visit.Gender.GetType()))" class="col-5 form-control"></select>
+        <span asp-validation-for="Visit.Gender" class="text-danger col-5"></span>
+    </div>
+    <div class="form-group row">
+        <label asp-for="Visit.CountryId" class="col-2"></label>
+        <select asp-for="Visit.CountryId" asp-items="@(new SelectList(Model.Countries, "Id", "Name"))" class="col-5 form-control"></select>
+        <span asp-validation-for="Visit.CountryId" class="text-danger col-5"></span>
+    </div>
+    <div class="form-group row">
+        <label asp-for="Visit.CityId" class="col-2"></label>
+        <select asp-for="Visit.CityId" asp-items="@(new SelectList(Model.Cities, "Id", "Name"))" class="col-5 form-control"></select>
+        <span asp-validation-for="Visit.CityId" class="text-danger col-5"></span>
+    </div>
+    <div class="form-group row">
+        <label asp-for="Visit.CompanyName" class="col-2"></label>
+        <input asp-for="Visit.CompanyName" class="col-5 form-control" />
+        <span asp-validation-for="Visit.CompanyName" class="text-danger col-5"></span>
+    </div>
+    <div class="form-group row">
+        <label asp-for="Visit.CompanyMobile" class="col-2"></label>
+        <input asp-for="Visit.CompanyMobile" class="col-5 form-control" />
+        <span asp-validation-for="Visit.CompanyMobile" class="text-danger col-5"></span>
+    </div>
+    <div class="form-group row">
+        <label asp-for="Visit.CompanyTypeId" class="col-2"></label>
+        <select asp-for="Visit.CompanyTypeId" asp-items="@(new SelectList(Model.CompanyTypes, "Id", "Name"))" class="col-5 form-control"></select>
+        <span asp-validation-for="Visit.CompanyTypeId" class="text-danger col-5"></span>
+    </div>
+    <div class="form-group row">
+        <label asp-for="Visit.Domain" class="col-2"></label>
+        <input asp-for="Visit.Domain" class="col-5 form-control" />
+        <span asp-validation-for="Visit.Domain" class="text-danger col-5"></span>
+    </div>
+    <div class="form-group row">
+        <label asp-for="Visit.CompanyEmail" class="col-2"></label>
+        <input asp-for="Visit.CompanyEmail" class="col-5 form-control" />
+        <span asp-validation-for="Visit.CompanyEmail" class="text-danger col-5"></span>
+    </div>
+    <div class="form-group row">
+        <label asp-for="Visit.Location" class="col-2">Location (Long, Lat)</label>
+        <input asp-for="Visit.Location" class="col-5 form-control" />
+        <span asp-validation-for="Visit.Location" class="text-danger col-5"></span>
+    </div>
+    <div class="form-group row">
+        <label asp-for="Visit.VisitRating" class="col-2"></label>
+        <select asp-for="Visit.VisitRating" asp-items="@(Html.GetEnumSelectList(Model.Visit.VisitRating.GetType()))" class="col-5 form-control"></select>
+        <span asp-validation-for="Visit.VisitRating" class="text-danger col-5"></span>
+    </div>
+    <div class="form-group row">
+        <label asp-for="Visit.VisitDate" class="col-2"></label>
+        <input asp-for="Visit.VisitDate" class="col-5 form-control" value="@(DateTime.Now.ToString("yyyy-MM-dd"))" />
+        <span asp-validation-for="Visit.VisitDate" class="text-danger col-5"></span>
+    </div>
+    <div class="form-group row">
+        <label asp-for="Visit.VisitTime" class="col-2"></label>
+        <input asp-for="Visit.Notes" class="col-5 form-control" />
+        <span asp-validation-for="Visit.VisitTime" class="text-danger col-5"></span>
+    </div>
+    <div class="form-group row">
+        <label asp-for="Visit.Notes" class="col-2"></label>
+        <input asp-for="Visit.Notes" class="col-5 form-control" />
+        <span asp-validation-for="Visit.Notes" class="text-danger col-5"></span>
+    </div>
+    <div class="form-group row">
+        <input type="submit" value="Save" class="btn btn-success ml-3 mr-3" />
+        <a asp-action="Get" asp-route-id="@Model.Visit.Id" class="btn btn-primary">Cancel</a>
+    </div>
+</form>
+
+@section Scripts{
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

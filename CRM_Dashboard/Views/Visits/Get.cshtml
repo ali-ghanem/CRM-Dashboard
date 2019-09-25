@@ -1,0 +1,112 @@
+﻿@model CRM_Dashboard.Models.Visit
+
+@{
+    ViewData["Title"] = "Get";
+}
+
+<script>
+    let links = document.getElementById("linksList").children;
+    for (let i = 1; i < links.length; i++) {
+        links[i].classList.remove("active");
+        links[i].children[0].style.color = "#007bff";
+    }
+    let element = document.getElementById("linkVisits");
+    console.log(element);
+    console.log(element.children);
+
+    element.classList.add("active");
+    element.children[0].style.color = "#ffffff";
+</script>
+
+<h1>Visit Details</h1>
+<br />
+
+<div class="form-group row">
+    <label class="col-2" asp-for="EmployeeId">Employee</label>
+    <span class="font-weight-bold col-5">@(Model.Employee.FirstName + " " + Model.Employee.LastName)</span>
+</div>
+
+<div class="form-group row">
+    <label class="col-2" asp-for="CustomerName">Customer Name: </label>
+    <span class="font-weight-bold col-5">@Model.CustomerName</span>
+</div>
+
+<div class="form-group row">
+    <label class="col-2" asp-for="Mobile">Mobile: </label>
+    <span class="font-weight-bold col-5">@Model.Mobile</span>
+</div>
+
+<div class="form-group row">
+    <label class="col-2" asp-for="Email">Email: </label>
+    <span class="font-weight-bold col-5">@Model.Email</span>
+</div>
+
+<div class="form-group row">
+    <label class="col-2" asp-for="JobTitleId">Job Title: </label>
+    <span class="font-weight-bold col-5">@Model.JobTitle.Name</span>
+</div>
+
+<div class="form-group row">
+    <label class="col-2" asp-for="Gender">Gender: </label>
+    <span class="font-weight-bold col-5">@Model.Gender</span>
+</div>
+<div class="form-group row">
+    <label class="col-2" asp-for="Country">Country: </label>
+    <span class="font-weight-bold col-5">@Model.Country.Name</span>
+</div>
+<div class="form-group row">
+    <label class="col-2" asp-for="City">City: </label>
+    <span class="font-weight-bold col-5">@Model.City.Name</span>
+</div>
+
+<div class="form-group row">
+    <label class="col-2" asp-for="CompanyName">Company Name: </label>
+    <span class="font-weight-bold col-5">@Model.CompanyName</span>
+</div>
+<div class="form-group row">
+    <label class="col-2" asp-for="CompanyMobile">Company Mobile: </label>
+    <span class="font-weight-bold col-5">@Model.CompanyMobile</span>
+</div>
+
+<div class="form-group row">
+    <label class="col-2" asp-for="CompanyType">Company Type: </label>
+    <span class="font-weight-bold col-5">@Model.CompanyType.Name</span>
+</div>
+<div class="form-group row">
+    <label class="col-2" asp-for="Domain">Domain: </label>
+    <span class="font-weight-bold col-5">@Model.Domain</span>
+</div>
+<div class="form-group row">
+    <label class="col-2" asp-for="CompanyEmail">Company Email: </label>
+    <span class="font-weight-bold col-5">@Model.CompanyEmail</span>
+</div>
+<div class="form-group row">
+    <label class="col-2" asp-for="Location">Location (Long, Lat): </label>
+    <span class="font-weight-bold col-5">@Model.Location</span>
+</div>
+<div class="form-group row">
+    <label class="col-2" asp-for="VisitRating">Visit Rate: </label>
+    <span class="font-weight-bold col-5">@Model.VisitRating.GetDisplayName()</span>
+</div>
+<div class="form-group row">
+    <label class="col-2" asp-for="VisitDate">Visit Date: </label>
+    <span class="font-weight-bold col-5">@Model.VisitDate</span>
+</div>
+<div class="form-group row">
+    <label class="col-2" asp-for="VisitTime">Visit Time: </label>
+    <span class="font-weight-bold col-5">@Model.VisitTime</span>
+</div>
+
+<div class="form-group row">
+    <label class="col-2" asp-for="Notes">Notes: </label>
+    <span class="font-weight-bold col-5">@Model.Notes</span>
+</div>
+<div class="form-group row">
+    <a asp-action="Files" asp-route-id="@Model.Id" class="btn btn-outline-primary ml-3">All Files</a>
+</div>
+<div class="form-group row">
+    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-info ml-3 mr-3">Edit</a>
+    <a asp-action="Delete" asp-route-id="@Model.Id"
+       class="btn btn-danger"
+       onclick="return confirm('Are you sure you want to delete this visit?');">Delete</a>
+</div>

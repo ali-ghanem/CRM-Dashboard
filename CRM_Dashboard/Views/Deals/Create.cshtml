@@ -1,0 +1,76 @@
+﻿@model CRM_Dashboard.Models.ViewModels.DealViewModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<script>
+    let links = document.getElementById("linksList").children;
+    for (let i = 1; i < links.length; i++) {
+        links[i].classList.remove("active");
+        links[i].children[0].style.color = "#007bff";
+    }
+    let element = document.getElementById("linkDeals");
+    element.classList.add("active");
+    element.children[0].style.color = "#ffffff";
+</script>
+
+<h1>Create Deal</h1>
+<br />
+
+<form method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="form-group row">
+        <label asp-for="Deal.DealName" class="col-2"></label>
+        <input asp-for="Deal.DealName" class="col-5 form-control" />
+        <span asp-validation-for="Deal.DealName" class="text-danger col-5"></span>
+    </div>
+    <div class="form-group row">
+        <label asp-for="Deal.ProjectId" class="col-2"></label>
+        <select asp-for="Deal.ProjectId" asp-items="@(new SelectList(Model.Projects, "Id", "Name"))" class="col-5 form-control"></select>
+        <span asp-validation-for="Deal.ProjectId" class="text-danger col-5"></span>
+    </div>
+    <div class="form-group row">
+        <label asp-for="Deal.EmployeeId" class="col-2"></label>
+        <select asp-for="Deal.EmployeeId" asp-items="@(new SelectList(Model.EmployeesNames, "Id", "Name"))" class="col-5 form-control"></select>
+        <span asp-validation-for="Deal.EmployeeId" class="text-danger col-5"></span>
+    </div>
+    <div class="form-group row">
+        <label asp-for="Deal.Ammount" class="col-2"></label>
+        <input asp-for="Deal.Ammount" class="col-5 form-control" />
+        <span asp-validation-for="Deal.Ammount" class="text-danger col-5"></span>
+    </div>
+    <div class="form-group row">
+        <label asp-for="Deal.Currency" class="col-2"></label>
+        <select asp-for="Deal.Currency" asp-items="@(Html.GetEnumSelectList(Model.Deal.Currency.GetType()))" class="col-5 form-control"></select>
+        <span asp-validation-for="Deal.Currency" class="text-danger col-5"></span>
+    </div>
+    <div class="form-group row">
+        <label asp-for="Deal.ProductId" class="col-2"></label>
+        <select asp-for="Deal.ProductId" asp-items="@(new SelectList(Model.Products, "Id", "Name"))" class="col-5 form-control"></select>
+        <span asp-validation-for="Deal.ProductId" class="text-danger col-5"></span>
+    </div>
+    <div class="form-group row">
+        <label asp-for="Deal.CloseDate" class="col-2"></label>
+        <input asp-for="Deal.CloseDate" value="@(DateTime.Now.AddDays(3).ToString("yyyy-MM-dd"))" class="col-5 form-control" />
+        <span asp-validation-for="Deal.CloseDate" class="text-danger col-5"></span>
+    </div>
+    <div class="form-group row">
+        <label asp-for="Deal.Notes" class="col-2"></label>
+        <input asp-for="Deal.Notes" class="col-5 form-control" />
+        <span asp-validation-for="Deal.Notes" class="text-danger col-5"></span>
+    </div>
+    <div class="form-group row">
+        <label asp-for="Deal.TypePayment" class="col-2"></label>
+        <select asp-for="Deal.TypePayment" asp-items="@(Html.GetEnumSelectList(Model.Deal.TypePayment.GetType()))" class="col-5 form-control"></select>
+        <span asp-validation-for="Deal.TypePayment" class="text-danger col-5"></span>
+    </div>
+    <div class="form-group row">
+        <input type="submit" value="Submit" class="btn btn-primary" />
+    </div>
+</form>
+
+@section Scripts{
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial.cshtml");}
+}
+

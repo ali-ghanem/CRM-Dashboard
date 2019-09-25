@@ -1,0 +1,83 @@
+﻿@model CRM_Dashboard.Models.ViewModels.CustomerViewModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<script>
+    let links = document.getElementById("linksList").children;
+    for (let i = 1; i < links.length; i++) {
+        links[i].classList.remove("active");
+        links[i].children[0].style.color = "#007bff";
+    }
+    let element = document.getElementById("linkCustomers");
+    console.log(element);
+    console.log(element.children);
+
+    element.classList.add("active");
+    element.children[0].style.color = "#ffffff";
+</script>
+
+<h1>Edit Customer</h1>
+<br />
+
+<form method="post">
+    <input hidden asp-for="Customer.Id" />
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="form-group row">
+        <label asp-for="Customer.FirstName" class="col-2"></label>
+        <input asp-for="Customer.FirstName" class="col-5 form-control" />
+        <span asp-validation-for="Customer.FirstName" class="text-danger col-5"></span>
+    </div>
+    <div class="form-group row">
+        <label asp-for="Customer.LastName" class="col-2"></label>
+        <input asp-for="Customer.LastName" class="col-5 form-control" />
+        <span asp-validation-for="Customer.LastName" class="text-danger col-5"></span>
+    </div>
+    <div class="form-group row">
+        <label asp-for="Customer.JobTitleId" class="col-2"></label>
+        <select asp-for="Customer.JobTitleId" asp-items="@(new SelectList(Model.JobTitles, "Id", "Name"))" class="col-5 form-control"></select>
+        <span asp-validation-for="Customer.JobTitleId" class="text-danger col-5"></span>
+    </div>
+    <div class="form-group row">
+        <label asp-for="Customer.Gender" class="col-2"></label>
+        <select asp-for="Customer.Gender" asp-items="@(Html.GetEnumSelectList(Model.Customer.Gender.GetType()))" class="col-5 form-control"></select>
+        <span asp-validation-for="Customer.Gender" class="text-danger col-5"></span>
+    </div>
+    <div class="form-group row">
+
+        <label asp-for="Customer.CountryId" class="col-2"></label>
+        <select asp-for="Customer.CountryId" asp-items="@(new SelectList(Model.Countries, "Id", "Name"))" class="col-5 form-control"></select>
+        <span asp-validation-for="Customer.CountryId" class="text-danger col-5"></span>
+    </div>
+    <div class="form-group row">
+        <label asp-for="Customer.CityId" class="col-2"></label>
+        <select asp-for="Customer.CityId" asp-items="@(new SelectList(Model.Cities, "Id", "Name"))" class="col-5 form-control"></select>
+        <span asp-validation-for="Customer.CityId" class="text-danger col-5"></span>
+    </div>
+    <div class="form-group row">
+        <label asp-for="Customer.Nationality1Id" class="col-2"></label>
+        <select asp-for="Customer.Nationality1Id" asp-items="@(new SelectList(Model.Nationalities, "Id", "Name"))" class="col-5 form-control"></select>
+        <span asp-validation-for="Customer.Nationality1Id" class="text-danger col-5"></span>
+    </div>
+    <div class="form-group row">
+        <label asp-for="Customer.Nationality2Id" class="col-2"></label>
+        <select asp-for="Customer.Nationality2Id" asp-items="@(new SelectList(Model.Nationalities, "Id", "Name"))" class="col-5 form-control"></select>
+        <span asp-validation-for="Customer.Nationality2Id" class="text-danger col-5"></span>
+    </div>
+    <div class="form-group row">
+        <label asp-for="Customer.Address" class="col-2"></label>
+        <input asp-for="Customer.Address" class="col-5 form-control" />
+        <span asp-validation-for="Customer.Address" class="text-danger col-5"></span>
+    </div>
+    <div class="form-group row">
+        <label asp-for="Customer.Notes" class="col-2"></label>
+        <input asp-for="Customer.Notes" class="col-5 form-control" />
+        <span asp-validation-for="Customer.Notes" class="text-danger col-5"></span>
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Save" class="btn btn-primary" />
+        <a asp-action="Get" asp-route-id="@Model.Customer.Id" class="btn btn-info">Cancel</a>
+    </div>
+</form>
+

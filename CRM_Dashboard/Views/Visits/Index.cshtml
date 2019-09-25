@@ -1,0 +1,52 @@
+﻿@model IEnumerable<CRM_Dashboard.Models.Visit>
+@using System.ComponentModel.DataAnnotations;
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<script>
+    let links = document.getElementById("linksList").children;
+    for (let i = 1; i < links.length; i++) {
+        links[i].classList.remove("active");
+        links[i].children[0].style.color = "#007bff";
+    }
+    let element = document.getElementById("linkVisits");
+    console.log(element);
+    console.log(element.children);
+
+    element.classList.add("active");
+    element.children[0].style.color = "#ffffff";
+</script>
+ 
+<h1>Visits</h1>
+<br />
+@Html.ActionLink("Add Visit", "Create", "Visits", null, new { @class = "btn btn-primary" })
+<br />
+<br />
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <td>Employee Name</td>
+            <td>Customer Name</td>
+            <td>Company Name</td>
+            <td>Vist Date</td>
+            <td>Visit Rate</td>
+            <td></td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var visit in Model)
+        {
+            <tr>
+                <td>@(visit.Employee.FirstName + " " + visit.Employee.LastName)</td>
+                <td>@visit.CustomerName</td>
+                <td>@visit.CompanyName</td>
+                <td>@visit.VisitDate</td>
+                <td>@(visit.VisitRating.GetDisplayName())</td>
+                <td>@Html.ActionLink("More Details", "Get", "Visits", new { id = visit.Id }, new { @class = "btn btn-info" })</td>
+            </tr>
+        }
+    </tbody>
+</table>

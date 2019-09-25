@@ -1,0 +1,75 @@
+﻿@model CRM_Dashboard.Models.ViewModels.ProjectViewModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<script>
+    let links = document.getElementById("linksList").children;
+    for (let i = 1; i < links.length; i++) {
+        links[i].classList.remove("active");
+        links[i].children[0].style.color = "#007bff";
+    }
+    let element = document.getElementById("linkProjects");
+    console.log(element);
+    console.log(element.children);
+
+    element.classList.add("active");
+    element.children[0].style.color = "#ffffff";
+</script>
+ 
+<h1>Create Project</h1>
+<br />
+
+<form onsubmit="getSubmittedList()" method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="form-group row">
+        <label asp-for="Project.Name" class="col-2"></label>
+        <input asp-for="Project.Name" class="col-5" />
+        <span asp-validation-for="Project.Name" class="text-danger col-5"></span>
+    </div>
+    <div class="form-group row">
+        <label asp-for="Project.CustomerId" class="col-2"></label>
+        <select asp-for="Project.CustomerId" asp-items="@(new SelectList(Model.CustomersNames, "Id", "Name"))" class="col-5 form-control"></select>
+        <span asp-validation-for="Project.CustomerId" class="text-danger col-5"></span>
+    </div>
+    <div id="checkboxes" class="form-group row">
+        <label class="col-2">Project Types</label>
+        <div class="col-5">
+            @foreach (var type in Model.ProjectTypes)
+            {
+                <div class="form-check">
+                    <label class="form-check-label">
+                        <input type="checkbox" value="@type.Id" class="form-check-input" />@type.Name
+                    </label>
+                </div>
+            }
+        </div>
+    </div>
+    <input asp-for="TypesList" id="list" hidden />
+    <div class="form-group row">
+        <input type="submit" value="Submit" class="btn btn-primary ml-3" />
+
+    </div>
+</form>
+
+<script>
+    let checkedTypes = [];
+    let typesList = document.getElementById("list");
+
+    function getSubmittedList() {
+        let checkboxes = document.querySelectorAll("input[type='checkbox']");
+        let typeId = 0;
+        for (let i = 0; i < checkboxes.length; i++) {
+            if (checkboxes[i].checked) {
+                typeId = checkboxes[i].value;
+                checkedTypes.push(typeId);
+            }
+        }
+        typesList.value = checkedTypes;
+    }
+</script>
+
+@section Scripts{
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

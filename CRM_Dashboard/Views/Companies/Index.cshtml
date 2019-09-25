@@ -1,0 +1,59 @@
+﻿@model IEnumerable<CRM_Dashboard.Models.Company>
+
+@{
+    ViewData["Title"] = "Companies";
+}
+
+<script>
+    let links = document.getElementById("linksList").children;
+    for (let i = 1; i < links.length; i++) {
+        links[i].classList.remove("active");
+        links[i].children[0].style.color = "#007bff";
+    }
+    let element = document.getElementById("linkCompanies");
+    element.classList.add("active");
+    element.children[0].style.color = "#ffffff";
+</script>
+
+<h1>Companies</h1>
+<br />
+@Html.ActionLink("Add Company", "Create", "Companies", null, new { @class = "btn btn-primary" })
+<br />
+<br />
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <td>Name</td>
+            <td>Types</td>
+            <td>Customer</td>
+            <td>Country</td>
+            <td>City</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var company in Model)
+        {
+            <tr>
+                <td>@Html.ActionLink(company.Name, "Get", "Companies", new { id = company.Id })</td>
+                <td>
+                    @foreach (var type in company.CompaniesTypes)
+                    {
+                        <span>@type.CompanyType.Name</span>
+                        <br />
+                    }
+                </td>
+                <td>
+                    @Html.ActionLink((company.Customer.FirstName + " " + company.Customer.LastName), "Get", "Customers", new { id = company.CustomerId })
+                </td>
+                <td>
+                    <span>@company.Country.Name</span>
+                </td>
+                <td>
+                    <span>@company.City.Name</span>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+

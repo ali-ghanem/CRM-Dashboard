@@ -1,0 +1,70 @@
+﻿@model IEnumerable<CRM_Dashboard.Models.Deal>
+
+@{
+    ViewData["Title"] = "Deals";
+}
+
+<script>
+    let links = document.getElementById("linksList").children;
+    for (let i = 1; i < links.length; i++) {
+        links[i].classList.remove("active");
+        links[i].children[0].style.color = "#007bff";
+    }
+    let element = document.getElementById("linkDeals");
+    element.classList.add("active");
+    element.children[0].style.color = "#ffffff";
+</script>
+ 
+<h1>Deals</h1>
+
+<br />
+<a asp-action="Create" class="btn btn-primary">Add Deal</a>
+<br />
+<br />
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <td>Deal Name</td>
+            <td>Project</td>
+            <td>Employee</td>
+            <td>Ammount</td>
+            <td>Currency</td>
+            <td>Product</td>
+            <td>Close Date</td>
+            <td>Payment Type</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var deal in Model)
+        {
+            <tr>
+                <td>
+                    <a asp-action="Get" asp-route-id="@deal.Id">@deal.DealName</a>
+                </td>
+                <td>
+                    <a asp-action="Get" asp-controller="Projects" asp-route-id="@deal.ProjectId">@deal.Project.Name</a>
+                </td>
+                <td>
+                    @(deal.Employee.FirstName + " " + deal.Employee.LastName)
+                </td>
+                <td>
+                    @deal.Ammount
+                </td>
+                <td>
+                    @deal.Currency.ToString()
+                </td>
+                <td>
+                    @deal.Product.Name
+                </td>
+                <td>
+                    @deal.CloseDate
+                </td>
+                <td>
+                    @deal.TypePayment.ToString()
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+

@@ -1,0 +1,52 @@
+﻿@model CRM_Dashboard.Models.Project
+
+@{
+    ViewData["Title"] = "Project Info";
+}
+
+<script>
+    let links = document.getElementById("linksList").children;
+    for (let i = 1; i < links.length; i++) {
+        links[i].classList.remove("active");
+        links[i].children[0].style.color = "#007bff";
+    }
+    let element = document.getElementById("linkProjects");
+    console.log(element);
+    console.log(element.children);
+
+    element.classList.add("active");
+    element.children[0].style.color = "#ffffff";
+</script>
+
+<h1>Project Info</h1>
+<br />
+
+<div class="form-group row">
+    <span class="col-2">Name: </span>
+    <span class="font-weight-bold col-5">@Model.Name</span>
+</div>
+
+<div class="form-group row">
+    <span class="col-2">Customer: </span>
+    <span class="font-weight-bold col-5">@Html.ActionLink((Model.Customer.FirstName + " " + Model.Customer.LastName), "Get", "Customers", new { id = Model.CustomerId })</span>
+</div>
+<div class="form-group row">
+    <span class="col-2">Types: </span>
+    <ul class="list-inline">
+        @foreach (var type in Model.ProjectsTypes)
+        {
+            <li class="list-inline-item border p-2">
+                @type.ProjectType.Name
+            </li>
+        }
+    </ul>
+</div>
+<div class="form-group row">
+    <a asp-action="Files" asp-route-id="@Model.Id" class="btn btn-outline-primary ml-3">All Files</a>
+</div>
+<div class="form-group row">
+    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-info ml-3 mr-3">Edit</a>
+    <a asp-action="Delete" asp-route-id="@Model.Id"
+       class="btn btn-danger"
+       onclick="return confirm('Are you sure you want to delete this project?');">Delete</a>
+</div>

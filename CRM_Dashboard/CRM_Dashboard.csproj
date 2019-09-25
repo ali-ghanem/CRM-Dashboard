@@ -1,0 +1,105 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Migrations\20190903131749_AddGendersTable.cs" />
+    <Compile Remove="Migrations\20190903131749_AddGendersTable.Designer.cs" />
+    <Compile Remove="Migrations\20190905063736_ProjectsTypeTable_EditPrimaryKey.cs" />
+    <Compile Remove="Migrations\20190905063736_ProjectsTypeTable_EditPrimaryKey.Designer.cs" />
+    <Compile Remove="Migrations\20190907085707_FilesTable_InitialCreate.cs" />
+    <Compile Remove="Migrations\20190907085707_FilesTable_InitialCreate.Designer.cs" />
+    <Compile Remove="Migrations\20190907093756_FilesTable_InitialCreate.cs" />
+    <Compile Remove="Migrations\20190907093756_FilesTable_InitialCreate.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\css\animate.min.css" />
+    <None Include="wwwroot\css\bootstrap.min.css" />
+    <None Include="wwwroot\css\demo.css" />
+    <None Include="wwwroot\css\light-bootstrap-dashboard.css" />
+    <None Include="wwwroot\css\pe-icon-7-stroke.css" />
+    <None Include="wwwroot\fonts\Pe-icon-7-stroke.eot" />
+    <None Include="wwwroot\fonts\Pe-icon-7-stroke.svg" />
+    <None Include="wwwroot\fonts\Pe-icon-7-stroke.ttf" />
+    <None Include="wwwroot\fonts\Pe-icon-7-stroke.woff" />
+    <None Include="wwwroot\img\default-avatar.png" />
+    <None Include="wwwroot\img\faces\face-0.jpg" />
+    <None Include="wwwroot\img\faces\face-1.jpg" />
+    <None Include="wwwroot\img\faces\face-2.jpg" />
+    <None Include="wwwroot\img\faces\face-3.jpg" />
+    <None Include="wwwroot\img\faces\face-4.jpg" />
+    <None Include="wwwroot\img\faces\face-5.jpg" />
+    <None Include="wwwroot\img\faces\face-6.jpg" />
+    <None Include="wwwroot\img\faces\face-7.jpg" />
+    <None Include="wwwroot\img\faces\tim_vector.jpe" />
+    <None Include="wwwroot\img\favicon.ico" />
+    <None Include="wwwroot\img\full-screen-image-3.jpg" />
+    <None Include="wwwroot\img\loading-bubbles.svg" />
+    <None Include="wwwroot\img\mask.png" />
+    <None Include="wwwroot\img\new_logo.png" />
+    <None Include="wwwroot\img\sidebar-1.jpg" />
+    <None Include="wwwroot\img\sidebar-2.jpg" />
+    <None Include="wwwroot\img\sidebar-3.jpg" />
+    <None Include="wwwroot\img\sidebar-4.jpg" />
+    <None Include="wwwroot\img\sidebar-5.jpg" />
+    <None Include="wwwroot\img\tim_80x80.png" />
+    <None Include="wwwroot\js\bootstrap-notify.js" />
+    <None Include="wwwroot\js\bootstrap-select.js" />
+    <None Include="wwwroot\js\bootstrap.min.js" />
+    <None Include="wwwroot\js\chartist.min.js" />
+    <None Include="wwwroot\js\demo.js" />
+    <None Include="wwwroot\js\jquery.3.2.1.min.js" />
+    <None Include="wwwroot\js\light-bootstrap-dashboard.js" />
+    <None Include="wwwroot\sass\lbd\mixins\_buttons.scss" />
+    <None Include="wwwroot\sass\lbd\mixins\_cards.scss" />
+    <None Include="wwwroot\sass\lbd\mixins\_chartist.scss" />
+    <None Include="wwwroot\sass\lbd\mixins\_icons.scss" />
+    <None Include="wwwroot\sass\lbd\mixins\_inputs.scss" />
+    <None Include="wwwroot\sass\lbd\mixins\_labels.scss" />
+    <None Include="wwwroot\sass\lbd\mixins\_morphing-buttons.scss" />
+    <None Include="wwwroot\sass\lbd\mixins\_navbars.scss" />
+    <None Include="wwwroot\sass\lbd\mixins\_social-buttons.scss" />
+    <None Include="wwwroot\sass\lbd\mixins\_tabs.scss" />
+    <None Include="wwwroot\sass\lbd\mixins\_transparency.scss" />
+    <None Include="wwwroot\sass\lbd\mixins\_vendor-prefixes.scss" />
+    <None Include="wwwroot\sass\lbd\_alerts.scss" />
+    <None Include="wwwroot\sass\lbd\_buttons.scss" />
+    <None Include="wwwroot\sass\lbd\_cards.scss" />
+    <None Include="wwwroot\sass\lbd\_chartist.scss" />
+    <None Include="wwwroot\sass\lbd\_checkbox-radio-switch.scss" />
+    <None Include="wwwroot\sass\lbd\_dropdown.scss" />
+    <None Include="wwwroot\sass\lbd\_footers.scss" />
+    <None Include="wwwroot\sass\lbd\_inputs.scss" />
+    <None Include="wwwroot\sass\lbd\_misc.scss" />
+    <None Include="wwwroot\sass\lbd\_mixins.scss" />
+    <None Include="wwwroot\sass\lbd\_navbars.scss" />
+    <None Include="wwwroot\sass\lbd\_responsive.scss" />
+    <None Include="wwwroot\sass\lbd\_sidebar-and-main-panel.scss" />
+    <None Include="wwwroot\sass\lbd\_tables.scss" />
+    <None Include="wwwroot\sass\lbd\_typography.scss" />
+    <None Include="wwwroot\sass\lbd\_variables.scss" />
+    <None Include="wwwroot\sass\light-bootstrap-dashboard.scss" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.3" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <Folder Include="wwwroot\files\customers\" />
+    <Folder Include="wwwroot\files\companies\" />
+    <Folder Include="wwwroot\files\deals\" />
+    <Folder Include="wwwroot\files\dealPayments\" />
+    <Folder Include="wwwroot\files\visits\" />
+    <Folder Include="wwwroot\files\projects\" />
+  </ItemGroup>
+
+</Project>
